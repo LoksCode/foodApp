@@ -1,14 +1,22 @@
-export default function Meals() {
-  fetch('http://localhost:3000/meals', { method: 'GET' }).then((response) => {
-    console.log(response);
+import { useState, useEffect } from 'react';
 
-    const meals = response.json();
-    console.log(meals);
-  });
+export default function Meals() {
+  const [loadedMeals, setLoadedMeals] = useState([]);
+
+  useEffect(() => {
+    async function fetchMeals() {
+      const response = await fetch('http://localhost:3000/meals');
+      const meals = await response.json();
+      setLoadedMeals(meals);
+    }
+    fetchMeals();
+  }, []);
 
   return (
     <ul id='meals'>
-      <li>Product 1</li>
+      {loadedMeals.map((meal) => {
+        return <li key={meal.id}>{meal.name}</li>;
+      })}
     </ul>
   );
 }
