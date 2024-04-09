@@ -8,7 +8,7 @@ export default function Header() {
         <img src={logoImg} alt='food on a table' /> <h1>REST-aurant</h1>
       </div>
       <nav>
-        <Button>Cart (0)</Button>
+        <Button textOnly>Cart (0)</Button>
       </nav>
     </header>
   );
