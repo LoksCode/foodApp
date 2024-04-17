@@ -1,11 +1,12 @@
-import { useContext } from 'react';
 import Button from './Button';
-import CartContext from '../store/CartContext';
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../store/cartSlice';
 
 export default function MealItem({ meal }) {
-  const cartCtx = useContext(CartContext);
+  const dispatch = useDispatch();
+
   function handleAddMealToCart() {
-    cartCtx.addItem(meal);
+    dispatch(cartActions.addItem(meal));
   }
 
   return (
